@@ -2,9 +2,9 @@
 
 namespace BucStop.Controllers
 {
-    public class SnakeController : Controller
+    public class GamesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Snake()
         {
             return View();
         }
