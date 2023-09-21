@@ -8,5 +8,9 @@ namespace BucStop.Controllers
         {
             return View();
         }
+        public IActionResult Tetris()
+        {
+            return View();
+        }
     }
 }
