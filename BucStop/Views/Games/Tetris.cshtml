@@ -3,12 +3,36 @@
 }
 <h2>Tetris</h2>
 <body>
+    <style>
+        body {
+            background-color: #00053E
+        }
+
+        canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            border-style: solid;
+            background-color: #333333
+        }
+
+        #disc {
+            background-color: #253746;
+            border-style: solid;
+            color: aqua;
+        }
+    </style>
     <canvas width="320" height="640" id="game" style="border: 1px solid #000000; background-color: gray"></canvas>
+    <div id="disc">AUTHOR: Straker, Troy Cashion</div>
+    <div id="disc"><p>DESCRIPTION: Basic Tetris</p></div>
     <script>
+    let score = 0;
     // https://tetris.fandom.com/wiki/Tetris_Guideline
 
     // get a random integer between the range of [min,max]
-// see https://stackoverflow.com/a/1527820/2124254
+    // see https://stackoverflow.com/a/1527820/2124254
     function getRandomInt(min, max) {
      min = Math.ceil(min);
      max = Math.floor(max);
@@ -98,19 +122,16 @@
         }
       }
 
-      count = 0;
+      lineCount = 0;
       // check for line clears starting from the bottom and working our way up
       for (let row = playfield.length - 1; row >= 0; ) {
-        
-        count = 0;
-
         if (playfield[row].every(cell => !!cell)) {
 
+          lineCount++;
           // drop every row above this one
           for (let r = row; r >= 0; r--) {
             for (let c = 0; c < playfield[r].length; c++) {
               playfield[r][c] = playfield[r-1][c];
-              count++;
             }
           }
         }
@@ -119,7 +140,7 @@
         }
       }
 
-      switch (count) 
+      switch (lineCount) 
       {
           case 1:
               score = score + 40;
@@ -149,11 +170,10 @@
 
       context.globalAlpha = 1;
       context.fillStyle = 'white';
-      context.font = '36px monospace';
+      context.font = '14px monospace';
       context.textAlign = 'center';
       context.textBaseline = 'middle';
       context.fillText('GAME OVER! Score: ' + score, canvas.width / 2, canvas.height / 2);
-      score = 0;
     }
 
     const canvas = document.getElementById('game');
@@ -225,11 +245,11 @@
       'L': 'orange'
     };
 
-    let count = 0;
+    count = 0;
     let tetromino = getNextTetromino();
     let rAF = null;  // keep track of the animation frame so we can cancel it
     let gameOver = false;
-    let score = 0;
+    let lineCount = 0;
 
     // game loop
     function loop() {
