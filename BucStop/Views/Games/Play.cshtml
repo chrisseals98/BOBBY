@@ -1,0 +1,26 @@
+﻿@model BucStop.Models.Game
+
+<!-- Content -->
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">@Model.Title</div>
+                <div class="card-body">
+                    <div class="game">
+                        <!-- Embed the game content here -->
+                        <div><canvas class="col-sm-6" width="400" height="400" id="game"></canvas></div>
+                        @Html.Raw(Model.Content)
+                        <div id="snake-game">
+                            <!-- Embed the game's HTML here -->
+                            <script src="~/js/snake.js"></script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-description">@Model.Description</div>
+        </div>
+    </div>
+</div>
+

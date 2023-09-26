@@ -1,0 +1,12 @@
+﻿@model List<BucStop.Models.Game>
+
+<h2>List of Games</h2>
+
+<ul>
+    @foreach (var game in Model)
+    {
+        <li>
+            @Html.ActionLink(game.Title, "Play", new { id = game.Id })
+        </li>
+    }
+</ul>
