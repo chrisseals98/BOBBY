@@ -319,6 +319,7 @@
         if (isValidMove(matrix, tetromino.row, tetromino.col)) {
           tetromino.matrix = matrix;
         }
+        e.preventDefault();
       }
 
       // down arrow key (drop)
@@ -333,8 +334,43 @@
         }
 
         tetromino.row = row;
+        e.preventDefault();
+      }
+
+      if (e.which === 32) {
+          // Space bar pressed - move tetromino to bottom
+          let row = tetromino.row;
+          while (isValidMove(tetromino.matrix, row + 1, tetromino.col)) {
+              row++;
+          }
+          tetromino.row = row;
+          placeTetromino();
+          return;
       }
     });
+
+    document.addEventListener('keyup', function (e) {
+        if (gameOver) return;
+
+        if (e.which === 32) {
+            let row = tetronimo.row + 1;
+
+            while (isValidMove(tetronimo.matrix, row, tetronimo.col)) {
+                tetronimo.row = row;
+                row = row + 1;
+            }
+
+            placeTetromino();
+            e.preventDefault();
+            return;
+        }
+    });
+
+    window.addEventListener("keydown", function (e) {
+        if (e.keyCode == 40 || e.keyCode == 32/* Down arrow or space */) {
+            e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
+        }
+    }, false);
 
     // start the game
     rAF = requestAnimationFrame(loop);
