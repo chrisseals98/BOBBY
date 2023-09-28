@@ -1,5 +1,15 @@
 ﻿@model BucStop.Models.Game
 
+<style>
+    canvas {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border-style: solid;
+</style>
+
 <!-- Content -->
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -8,14 +18,19 @@
                 <div class="card-header">@Model.Title</div>
                 <div class="card-body">
                     <div class="game">
-                        <!-- Embed the game content here -->
-                        <div><canvas class="col-sm-6" width="400" height="400" id="game"></canvas></div>
-                        @Html.Raw(Model.Content)
-                        <div id="snake-game">
-                            <!-- Embed the game's HTML here -->
-                            <script src="~/js/snake.js"></script>
-                        </div>
 
+                        <!-- Embed the game canvas here -->
+                        @if (Model.Title == "Snake")
+                        {
+                            <canvas class="col-sm-6" width="400" height="400" id="game"></canvas>
+                        }
+                        @if (Model.Title == "Tetris")
+                        {
+                            <canvas width="320" height="640" id="game" style="border: 1px solid #000000; background-color: gray"></canvas>
+                        }
+
+                            <!-- Embed the game's Javascript here -->
+                            <script src="@Url.Content(Model.Content)"></script>
                     </div>
                 </div>
             </div>
@@ -23,4 +38,3 @@
         </div>
     </div>
 </div>
-
