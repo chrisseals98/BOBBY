@@ -1,5 +1,9 @@
 ﻿@model BucStop.Models.Game
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style>
     canvas {
         padding-left: 0;
@@ -8,6 +12,7 @@
         margin-right: auto;
         display: block;
         border-style: solid;
+    }
 </style>
 
 <!-- Content -->
@@ -22,7 +27,7 @@
                         <!-- Embed the game canvas here -->
                         @if (Model.Title == "Snake")
                         {
-                            <canvas class="col-sm-6" width="400" height="400" id="game"></canvas>
+                            <canvas width="400" height="400" id="game"></canvas>
                         }
                         @if (Model.Title == "Tetris")
                         {
@@ -34,7 +39,24 @@
                     </div>
                 </div>
             </div>
-            <div class="card-description">@Model.Description</div>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#author">Author</a></li>
+                <li><a data-toggle="tab" href="#desc">Description</a></li>
+                <li><a data-toggle="tab" href="#howto">How to Play</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="author" class="tab-pane fade in active">
+                    <p>@Model.Author</p>
+                </div>
+                <div id="desc" class="tab-pane fade">
+                    <p>@Model.Description</p>
+                </div>
+                <div id="howto" class="tab-pane fade">
+                    <p>@Model.HowTo</p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

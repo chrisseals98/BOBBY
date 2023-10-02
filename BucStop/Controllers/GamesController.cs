@@ -12,13 +12,17 @@ namespace BucStop.Controllers
                 Id = 1, 
                 Title = "Snake", 
                 Content = "~/js/snake.js",
-                Description = "Snake - add author, description, how to play, etc..." 
+                Author = "Author",
+                Description = "Description",
+                HowTo = "How to play"
             },
             new Game { 
                 Id = 2, 
                 Title = "Tetris", 
                 Content = "~/js/tetris.js",
-                Description = "Tetris description." 
+                Author = "Tetris description.",
+                Description = "Tetris description.",
+                HowTo = "Tetris description."
             }
         };
 

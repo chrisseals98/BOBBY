@@ -14,6 +14,12 @@ namespace BucStop.Models
         public string Content { get; set; }
 
         [Required]
+        public string Author { get; set; }
+
+        [Required]
         public string Description { get; set; }
+
+        [Required]
+        public string HowTo { get; set; }
     }
 }
