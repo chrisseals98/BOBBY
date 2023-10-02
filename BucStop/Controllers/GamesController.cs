@@ -13,8 +13,9 @@ namespace BucStop.Controllers
                 Title = "Snake", 
                 Content = "~/js/snake.js",
                 Author = "Author",
-                Description = "Description",
-                HowTo = "How to play"
+                Description = "Snake Description",
+                HowTo = "How to play.",
+                Thumbnail = "/images/snake.jpg" //640x360 resolution
             },
             new Game { 
                 Id = 2, 
@@ -22,7 +23,8 @@ namespace BucStop.Controllers
                 Content = "~/js/tetris.js",
                 Author = "Tetris description.",
                 Description = "Tetris description.",
-                HowTo = "Tetris description."
+                HowTo = "How to play.",
+                Thumbnail = "/images/tetris.jpg"
             }
         };
 

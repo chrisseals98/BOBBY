@@ -1,12 +1,37 @@
 ﻿@model List<BucStop.Models.Game>
 
+<style>
+    .game-item {
+        display: inline-block;
+        margin-right: 20px;
+        vertical-align: top;
+    }
+
+    .game-title {
+        font-weight: bold;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .game-thumbnail {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
 <h2>List of Games</h2>
 
-<ul>
-    @foreach (var game in Model)
-    {
-        <li>
-            @Html.ActionLink(game.Title, "Play", new { id = game.Id })
-        </li>
-    }
-</ul>
+<div class="game-list">
+    <ul>
+        @foreach (var game in Model)
+        {
+            <div class="game-item">
+                <a href="@Url.Action("Play", "Games", new { id = game.Id })">
+                    <div class="game-title">@game.Title</div>
+                    <img class="game-thumbnail" src="@game.Thumbnail" alt="@game.Description">
+                </a>
+            </div>
+        }
+    </ul>
+</div>
+

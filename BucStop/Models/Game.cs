@@ -21,5 +21,8 @@ namespace BucStop.Models
 
         [Required]
         public string HowTo { get; set; }
+
+        [Required]
+        public string Thumbnail { get; set; }
     }
 }
