@@ -28,3 +28,36 @@ html * {
     font-family: "My Custom Font";
     src: url(/fonts/BebasNeue-Regular.ttf) format("truetype");
 }
+h1 {
+    color: #FFC72C;
+}
+
+a {
+    color: #C6AA76;
+}
+
+p {
+    color: white;
+}
+
+.game-item {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: top;
+}
+
+.game-title {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.game-thumbnail {
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+
+   
