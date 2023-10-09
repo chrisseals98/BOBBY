@@ -20,24 +20,57 @@ body {
     background-size: cover;
 }
 
-html * {
-    font-family: "My Custom Font";
+@font-face {
+    font-family: "Bebas Neue";
+    src: url(/fonts/BebasNeue-Regular.ttf) format("truetype");
 }
 
 @font-face {
-    font-family: "My Custom Font";
-    src: url(/fonts/BebasNeue-Regular.ttf) format("truetype");
+    font-family: "Great Vibes";
+    src: url(/fonts/GreatVibes-Regular.ttf) format("truetype");
 }
+
+/* Default font */
+html * {
+    font-family: "Bebas Neue";
+}
+
+/* Default Colors */
 h1 {
-    color: #FFC72C;
+    color: #FFC72C; /* ETSU Gold */
 }
 
 a {
-    color: #C6AA76;
+    color: #C6AA76; /* Old Gold */
 }
 
 p {
     color: white;
+}
+
+/* Color and font classes */
+.color-etsu-navy {
+    color: #00053E;
+}
+
+.color-etsu-gold {
+    color: #FFC72C;
+}
+
+.color-medium-blue {
+    color: #002855;
+}
+
+.color-dark-blue {
+    color: #0C2340;
+}
+
+.color-old-gold {
+    color: #C6AA76;
+}
+
+.font-great-vibes {
+    font-family: "Great Vibes";
 }
 
 .game-item {
