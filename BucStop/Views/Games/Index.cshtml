@@ -1,0 +1,18 @@
+﻿@model List<BucStop.Models.Game>
+
+<h1>List of Games</h1>
+
+<div class="game-list">
+    <ul>
+        @foreach (var game in Model)
+        {
+            <div class="game-item">
+                <a href="@Url.Action("Play", "Games", new { id = game.Id })">
+                    <div class="game-title">@game.Title</div>
+                    <img class="game-thumbnail" src="@game.Thumbnail" alt="@game.Description">
+                </a>
+            </div>
+        }
+    </ul>
+</div>
+

@@ -1,3 +1,5 @@
+using System.Web.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +21,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "Games",
+    pattern: "Games/{action}/{id?}",
+    defaults: new { controller = "Games", action = "Index" });
 
 app.MapControllerRoute(
     name: "default",
