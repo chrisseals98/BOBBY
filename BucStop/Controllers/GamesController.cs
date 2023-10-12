@@ -25,7 +25,16 @@ namespace BucStop.Controllers
                 Description = "Tetris description.",
                 HowTo = "How to play.",
                 Thumbnail = "/images/tetris.jpg"
-            }
+            },
+            new Game {
+                Id = 3,
+                Title = "Pong",
+                Content = "~/js/pong.js",
+                Author = "Pong description.",
+                Description = "Pong description.",
+                HowTo = "How to play.",
+                Thumbnail = "/images/pong.jpg"
+            },
         };
 
         // GET: Game
