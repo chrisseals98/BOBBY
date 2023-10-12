@@ -1,24 +1,3 @@
-@{
-    ViewData["Title"] = "Tetris";
-}
-
-<h2>Tetris</h2>
-<body>
-    <style>
-        body {
-            background-color: #00053E
-        }
-    </style>
-
-   <canvas width="320" height="640" id="game" style="border: 1px solid #000000; background-color: gray"></canvas>
-    <div id="disc">AUTHOR: Straker, Troy Cashion, Dylan Cowell</div>
-        <div id="disc" > <p > DESCRIPTION: Tetris is a popular and addictive puzzle video game that challenges players to arrange falling geometric shapes, known as "Tetriminos," into complete horizontal lines. The game is played on a grid, and the objective is to strategically fit these Tetriminos together to create solid rows without any gaps. When a row is completed, it disappears, and the player scores points.
-
-        As you progress, the game becomes faster and more challenging, requiring quick thinking and precise placement to keep up with the falling Tetriminos. The goal is to score as many points as possible by clearing rows and preventing the play area from filling up. If the Tetriminos stack up to the top, the game ends.
-
-        Tetris is known for its simplicity and addictive nature, making it a timeless classic that anyone can pick up and enjoy, regardless of their gaming experience. It's a test of your spatial awareness and quick decision-making skills, making each game session a fun and rewarding puzzle-solving experience.</p></div>
-    <script>
-    let score = 0;
 // https://tetris.fandom.com/wiki/Tetris_Guideline
 
 // get a random integer between the range of [min,max]
@@ -112,12 +91,10 @@ function placeTetromino() {
     }
   }
 
-      lineCount = 0;
   // check for line clears starting from the bottom and working our way up
   for (let row = playfield.length - 1; row >= 0; ) {
     if (playfield[row].every(cell => !!cell)) {
 
-          lineCount++;
       // drop every row above this one
       for (let r = row; r >= 0; r--) {
         for (let c = 0; c < playfield[r].length; c++) {
@@ -128,22 +105,6 @@ function placeTetromino() {
     else {
       row--;
     }
-      }
-
-      switch (lineCount) 
-      {
-          case 1:
-              score = score + 40;
-              break;
-          case 2:
-              score = score + 100;
-              break;
-          case 3:
-              score = score + 300;
-              break;
-          case 4:
-              score = score + 1200;
-              break;
   }
 
   tetromino = getNextTetromino();
@@ -160,8 +121,10 @@ function showGameOver() {
 
   context.globalAlpha = 1;
   context.fillStyle = 'white';
+  context.font = '36px monospace';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
+  context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');
@@ -233,10 +196,10 @@ const colors = {
   'L': 'orange'
 };
 
+let count = 0;
 let tetromino = getNextTetromino();
 let rAF = null;  // keep track of the animation frame so we can cancel it
 let gameOver = false;
-    let lineCount = 0;
 
 // game loop
 function loop() {
@@ -306,7 +269,6 @@ document.addEventListener('keydown', function(e) {
     if (isValidMove(matrix, tetromino.row, tetromino.col)) {
       tetromino.matrix = matrix;
     }
-        e.preventDefault();
   }
 
   // down arrow key (drop)
@@ -320,46 +282,9 @@ document.addEventListener('keydown', function(e) {
       return;
     }
 
-        tetromino.row = row;
-        e.preventDefault();
-      }
-
-      if (e.which === 32) {
-          // Space bar pressed - move tetromino to bottom
-          let row = tetromino.row;
-          while (isValidMove(tetromino.matrix, row + 1, tetromino.col)) {
-              row++;
-          }
     tetromino.row = row;
-          placeTetromino();
-          return;
   }
 });
 
-    document.addEventListener('keyup', function (e) {
-        if (gameOver) return;
-
-        if (e.which === 32) {
-            let row = tetronimo.row + 1;
-
-            while (isValidMove(tetronimo.matrix, row, tetronimo.col)) {
-                tetronimo.row = row;
-                row = row + 1;
-            }
-
-            placeTetromino();
-            e.preventDefault();
-            return;
-        }
-    });
-
-    window.addEventListener("keydown", function (e) {
-        if (e.keyCode == 40 || e.keyCode == 32/* Down arrow or space */) {
-            e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
-        }
-    }, false);
-
-    // start the game
-    rAF = requestAnimationFrame(loop);
-    </script>
-</body>
+// start the game
+rAF = requestAnimationFrame(loop);
