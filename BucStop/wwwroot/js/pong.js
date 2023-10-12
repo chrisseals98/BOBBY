@@ -5,7 +5,7 @@ const paddleWidth = grid * 5; // 75
 const maxPaddleX = canvas.width - grid - paddleWidth;
 
 var paddleSpeed = 6;
-var ballSpeed = 3;
+var ballSpeed = 6;
 var playerScore = 0;
 var computerScore = 0;
 var resetting = false;
