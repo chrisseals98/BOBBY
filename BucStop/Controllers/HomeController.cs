@@ -18,12 +18,12 @@ namespace BucStop.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Admin()
         {
             return View();
         }
-
-        public IActionResult Games()
+        
+        public IActionResult Privacy()
         {
             return View();
         }
