@@ -1,3 +1,8 @@
+/*
+ * This file handles managing the swipe events for implementing touch controls.
+ * Had issues with iOS, so it's deprecated.
+ */
+
 var game = document.getElementById("game");
 if (game != null) { //used so the browser doesn't freak out if not at a game page
 
