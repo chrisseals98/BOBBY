@@ -272,7 +272,7 @@ document.addEventListener('keydown', function (e) {
         }
     }
 
-    // down arrow key or spacebar(drop)
+    // spacebar(instant drop)
     if (e.which == 32) {
         e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         let row = tetromino.row;
@@ -283,7 +283,7 @@ document.addEventListener('keydown', function (e) {
         placeTetromino();
     }
 
-    // down arrow key or spacebar(drop)
+    // down arrow key(drop)
     if (e.which === 40) {
         e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const row = tetromino.row + 1;
