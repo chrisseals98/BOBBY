@@ -1,17 +1,17 @@
 # BucStop
-## A Team Bobby Project
-## Members:
+### A Team Bobby Project
+### Members:
 > Isaac Camacho, Richard Cashion, Dylan Cowell, Thomas Foreman,
 > Dionte Jones, Matt Justis, Jacob Klucher, Dylan Lynch, 
 > Caleb Rains, Chris Seals, Kyle Wittman
-## CSCI 4350
-## Fall 2023, East Tennessee State University
+#### CSCI 4350
+#### Fall 2023, East Tennessee State University
 
-## Overview:
+### Overview:
 This project is a game website made by and for ETSU students. It
 is a place to put games created by ETSU students. 
 
-## Project Structure: 
+### Project Structure: 
 To understand the project structure, familiarize yourself with the
 MVC (Model View Controller) structure. When clicking on a game, 
 a value will be passed to the controller, which will decide which 
