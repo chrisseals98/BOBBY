@@ -273,7 +273,18 @@ document.addEventListener('keydown', function (e) {
     }
 
     // down arrow key or spacebar(drop)
-    if (e.which === 40 || e.which == 32) {
+    if (e.which == 32) {
+        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
+        let row = tetromino.row;
+        while (isValidMove(tetromino.matrix, row + 1, tetromino.col)) {
+            row++;
+        }
+        tetromino.row = row;
+        placeTetromino();
+    }
+
+    // down arrow key or spacebar(drop)
+    if (e.which === 40) {
         e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const row = tetromino.row + 1;
 
