@@ -7,56 +7,37 @@ if (game != null) { //used so the browser doesn't freak out if not at a game pag
 
     const canvasSwipe = document.getElementById('game');
 
-    let touchStartX, touchEndX;
-
-    canvasSwipe.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-    });
-
     canvasSwipe.addEventListener('touchmove', (e) => {
-        e.preventDefault(); // Prevent scrolling while swiping
+        e.preventDefault(); // Prevent the default touchmove behavior
     });
 
-    canvasSwipe.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        touchEndY = e.changedTouches[0].clientY;
-        handleSwipe();
+    const hammer = new Hammer(canvasSwipe);
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+
+    hammer.on('swipe', (e) => {
+        const direction = e.direction;
+
+        if (direction === Hammer.DIRECTION_LEFT) {
+            // Swipe left action
+            simulateArrowKeyPress(37); // 37 is the key code for the left arrow
+        } else if (direction === Hammer.DIRECTION_RIGHT) {
+            // Swipe right action
+            simulateArrowKeyPress(39); // 39 is the key code for the right arrow
+        } else if (direction === Hammer.DIRECTION_UP) {
+            // Swipe up action
+            simulateArrowKeyPress(38); // 38 is the key code for the up arrow
+        } else if (direction === Hammer.DIRECTION_DOWN) {
+            // Swipe down action
+            simulateArrowKeyPress(40); // 40 is the key code for the down arrow
+        }
     });
 
-    function simulateKeyPress(keyCode) {
+    function simulateArrowKeyPress(keyCode) {
         const event = new KeyboardEvent('keydown', {
             key: '',
             keyCode: keyCode,
             which: keyCode,
         });
         document.dispatchEvent(event);
-    }
-
-    function handleSwipe() {
-        const threshold = 50;
-
-        const deltaX = touchStartX - touchEndX;
-        const deltaY = touchStartY - touchEndY;
-
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            // Horizontal swipe
-            if (deltaX > threshold) {
-                // Swipe left action
-                simulateKeyPress(37); // 37 is the key code for left arrow
-            } else if (deltaX < -threshold) {
-                // Swipe right action
-                simulateKeyPress(39); // 39 is the key code for right arrow
-            }
-        } else {
-            // Vertical swipe
-            if (deltaY > threshold) {
-                // Swipe up action
-                simulateKeyPress(38); // 38 is the key code for up arrow
-            } else if (deltaY < -threshold) {
-                // Swipe down action
-                simulateKeyPress(40); // 40 is the key code for down arrow
-            }
-        }
     }
 }
