@@ -298,6 +298,7 @@ document.addEventListener('keydown', function (e) {
 
     // up arrow key (rotate)
     if (e.which === 38) {
+        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const matrix = rotate(tetromino.matrix);
         if (isValidMove(matrix, tetromino.row, tetromino.col)) {
             tetromino.matrix = matrix;
@@ -317,8 +318,8 @@ document.addEventListener('keydown', function (e) {
 
     // down arrow key (drop)
     if (e.which === 40) {
+        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const row = tetromino.row + 1;
-
         if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
             tetromino.row = row - 1;
 
