@@ -162,6 +162,7 @@ function showGameOver() {
   context.fillStyle = 'white';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
+  context.fillText('GAME OVER! Score: ' + score, canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');

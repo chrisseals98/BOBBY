@@ -14,6 +14,8 @@
 
 // get a random integer between the range of [min,max]
 // see https://stackoverflow.com/a/1527820/2124254
+
+let score = 0; //Overall score variable
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -103,10 +105,13 @@ function placeTetromino() {
         }
     }
 
+    lineCount = 0; //Counts the number of lines cleared for the current tetronimo
+
     // check for line clears starting from the bottom and working our way up
     for (let row = playfield.length - 1; row >= 0;) {
         if (playfield[row].every(cell => !!cell)) {
 
+            lineCount++; //Increase the number of cleared lines by one
             // drop every row above this one
             for (let r = row; r >= 0; r--) {
                 for (let c = 0; c < playfield[r].length; c++) {
@@ -117,6 +122,22 @@ function placeTetromino() {
         else {
             row--;
         }
+    }
+
+    //Increases the score based on the number of lines cleared
+    switch (lineCount) {
+        case 1:
+            score = score + 40;
+            break;
+        case 2:
+            score = score + 100;
+            break;
+        case 3:
+            score = score + 300;
+            break;
+        case 4:
+            score = score + 1200;
+            break;
     }
 
     tetromino = getNextTetromino();
@@ -133,10 +154,10 @@ function showGameOver() {
 
     context.globalAlpha = 1;
     context.fillStyle = 'white';
-    context.font = '36px monospace';
+    context.font = '20px monospace';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+    context.fillText('GAME OVER! Score: ' + score, canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');
@@ -295,11 +316,10 @@ document.addEventListener('keydown', function (e) {
         placeTetromino();
     }
 
-    // down arrow key(drop)
+    // down arrow key (drop)
     if (e.which === 40) {
         e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const row = tetromino.row + 1;
-
         if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
             tetromino.row = row - 1;
 
