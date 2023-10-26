@@ -10,11 +10,20 @@ namespace BucStopTesting
     {
         static void Main(string[] args)
         {
+            // Finds the current directory and adds folder and log file to filepath
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string errorLogDirectory = Path.Combine(baseDirectory, "ErrorLogs");
+
+            // Check if the 'ErrorLogs' directory exists, and if not, create it
+            if (!Directory.Exists(errorLogDirectory))
+            {
+                Directory.CreateDirectory(errorLogDirectory);
+            }
+
             string logFileName = "log.txt";
             string logFilePath = Path.Combine(errorLogDirectory, logFileName);
 
+            // We can add more drivers as need be
             IWebDriver driver = new ChromeDriver();
 
             Console.WriteLine($"Filepath is {logFilePath}.");
@@ -48,26 +57,26 @@ namespace BucStopTesting
                 driver.FindElement(By.CssSelector(".game-item:nth-child(2) .game-thumbnail")).Click();
                 // 12 | click | id=game | 
                 driver.FindElement(By.Id("game")).Click();
-                // 15 | click | linkText=Games | 
+                // 13 | click | linkText=Games | 
                 driver.FindElement(By.LinkText("Games")).Click();
-                // 16 | click | css=.game-item:nth-child(3) .game-thumbnail | 
+                // 14 | click | css=.game-item:nth-child(3) .game-thumbnail | 
                 driver.FindElement(By.CssSelector(".game-item:nth-child(3) .game-thumbnail")).Click();
-                // 17 | click | css=.nav-item > .active | 
+                // 15 | click | css=.nav-item > .active | 
                 driver.FindElement(By.CssSelector(".nav-item > .active")).Click();
-                // 18 | click | css=.active:nth-child(1) | 
+                // 16 | click | css=.active:nth-child(1) | 
                 driver.FindElement(By.CssSelector(".active:nth-child(1)")).Click();
-                // 19 | click | linkText=Games | 
+                // 17 | click | linkText=Games | 
                 driver.FindElement(By.LinkText("Games")).Click();
-                // 20 | click | linkText=Privacy | 
+                // 18 | click | linkText=Privacy | 
                 driver.FindElement(By.LinkText("Privacy")).Click();
-                // 21 | click | linkText=Admin | 
+                // 19 | click | linkText=Admin | 
                 driver.FindElement(By.LinkText("Admin")).Click();
-                // 22 | click | linkText=Home | 
+                // 20 | click | linkText=Home | 
                 driver.FindElement(By.LinkText("Home")).Click();
-                // 23 | click | css=img | 
+                // 21 | click | css=img | 
                 driver.FindElement(By.CssSelector("img")).Click();
 
-                // fake finds
+                // Error injection to test error logging
                 driver.FindElement(By.CssSelector("fakeCSS")).Click();
             }
             catch (NoSuchElementException ex1)
@@ -84,6 +93,7 @@ namespace BucStopTesting
             driver.Quit();
         }
 
+        // Adds timestamped error message to log file
         static void LogException(Exception ex, string logFilePath)
         {
             using (StreamWriter sw = new StreamWriter(logFilePath, true))
