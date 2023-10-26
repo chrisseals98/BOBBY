@@ -298,14 +298,27 @@ document.addEventListener('keydown', function (e) {
 
     // up arrow key (rotate)
     if (e.which === 38) {
+        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const matrix = rotate(tetromino.matrix);
         if (isValidMove(matrix, tetromino.row, tetromino.col)) {
             tetromino.matrix = matrix;
         }
     }
 
+    // spacebar(instant drop)
+    if (e.which == 32) {
+        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
+        let row = tetromino.row;
+        while (isValidMove(tetromino.matrix, row + 1, tetromino.col)) {
+            row++;
+        }
+        tetromino.row = row;
+        placeTetromino();
+    }
+
     // down arrow key (drop)
     if (e.which === 40) {
+        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const row = tetromino.row + 1;
 
         if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
