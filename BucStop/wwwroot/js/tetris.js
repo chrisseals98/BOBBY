@@ -105,25 +105,42 @@ function placeTetromino() {
         }
     }
 
-  lineCount = 0; //Counts the number of lines cleared for the current tetronimo
+    lineCount = 0; //Counts the number of lines cleared for the current tetronimo
 
-  // check for line clears starting from the bottom and working our way up
-  for (let row = playfield.length - 1; row >= 0; ) {
-    if (playfield[row].every(cell => !!cell)) {
+    // check for line clears starting from the bottom and working our way up
+    for (let row = playfield.length - 1; row >= 0;) {
+        if (playfield[row].every(cell => !!cell)) {
 
-      // drop every row above this one
-      for (let r = row; r >= 0; r--) {
-        for (let c = 0; c < playfield[r].length; c++) {
-          playfield[r][c] = playfield[r-1][c];
+            lineCount++; //Increase the number of cleared lines by one
+            // drop every row above this one
+            for (let r = row; r >= 0; r--) {
+                for (let c = 0; c < playfield[r].length; c++) {
+                    playfield[r][c] = playfield[r - 1][c];
+                }
+            }
         }
-      }
+        else {
+            row--;
+        }
     }
-    else {
-      row--;
-    }
-  }
 
-  tetromino = getNextTetromino();
+    //Increases the score based on the number of lines cleared
+    switch (lineCount) {
+        case 1:
+            score = score + 40;
+            break;
+        case 2:
+            score = score + 100;
+            break;
+        case 3:
+            score = score + 300;
+            break;
+        case 4:
+            score = score + 1200;
+            break;
+    }
+
+    tetromino = getNextTetromino();
 }
 
 // show the game over screen
@@ -135,12 +152,12 @@ function showGameOver() {
     context.globalAlpha = 0.75;
     context.fillRect(0, canvas.height / 2 - 30, canvas.width, 60);
 
-  context.globalAlpha = 1;
-  context.fillStyle = 'white';
-  context.font = '36px monospace';
-  context.textAlign = 'center';
-  context.textBaseline = 'middle';
-  context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+    context.globalAlpha = 1;
+    context.fillStyle = 'white';
+    context.font = '20px monospace';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText('GAME OVER! Score: ' + score, canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');
@@ -281,27 +298,14 @@ document.addEventListener('keydown', function (e) {
 
     // up arrow key (rotate)
     if (e.which === 38) {
-        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const matrix = rotate(tetromino.matrix);
         if (isValidMove(matrix, tetromino.row, tetromino.col)) {
             tetromino.matrix = matrix;
         }
     }
 
-    // spacebar(instant drop)
-    if (e.which == 32) {
-        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
-        let row = tetromino.row;
-        while (isValidMove(tetromino.matrix, row + 1, tetromino.col)) {
-            row++;
-        }
-        tetromino.row = row;
-        placeTetromino();
-    }
-
-    // down arrow key(drop)
+    // down arrow key (drop)
     if (e.which === 40) {
-        e.preventDefault(); // prevents the "default" action from happening, in this case, scrolling down.
         const row = tetromino.row + 1;
 
         if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
