@@ -1,4 +1,4 @@
-﻿using BucStop.Models;
+﻿ using BucStop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BucStop.Controllers
