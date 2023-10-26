@@ -1,12 +1,20 @@
 ﻿ using BucStop.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BucStop.Controllers
 {
     public class GamesController : Controller
     {
+        private readonly MicroClient _httpClient;
+        public GamesController(MicroClient games) 
+        {
+            _httpClient = games; 
+        }
+        
         private static List<Game> games = new List<Game>
         {
+            
             // Game data
             new Game { 
                 Id = 1, 
@@ -38,13 +46,15 @@ namespace BucStop.Controllers
         };
 
         // GET: Game
+
         public IActionResult Index()
         {
             return View(games);
         }
 
-        public IActionResult Play(int id)
+        public async Task<IActionResult> Play(int id)
         {
+            GameInfo[] _games = await _httpClient.GetGamesAsync();
             Game game = games.FirstOrDefault(x => x.Id == id);
             if (game == null)
             {

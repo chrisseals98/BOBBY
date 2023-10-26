@@ -22,11 +22,11 @@ namespace BucStop
             this._logger = logger;
         }
 
-        public async Task<GameInfo[]> GetPizzasAsync()
+        public async Task<GameInfo[]> GetGamesAsync()
         {
             try
             {
-                var responseMessage = await this.client.GetAsync("/GameInfo");
+                var responseMessage = await this.client.GetAsync("/Micro");
 
                 if (responseMessage != null)
                 {

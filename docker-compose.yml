@@ -1,4 +1,4 @@
-# version: '3.4'
+version: '3.4'
 
 # services:
 #   micro:
@@ -23,9 +23,9 @@ services:
       context: .
       dockerfile: BucStop/Dockerfile
     environment: 
-      - backendUrl=http://micro
+      - micro=http://micro
     ports:
-      - "5902:80"
+      - "80:80"
     depends_on: 
       - micro
   micro:
@@ -33,5 +33,3 @@ services:
     build: 
       context: .
       dockerfile: Micro/Dockerfile
-    ports: 
-      - "5900:80"
