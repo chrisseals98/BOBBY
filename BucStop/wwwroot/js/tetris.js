@@ -14,6 +14,8 @@
 
 // get a random integer between the range of [min,max]
 // see https://stackoverflow.com/a/1527820/2124254
+
+let score = 0; //Overall score variable
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -103,23 +105,25 @@ function placeTetromino() {
         }
     }
 
-    // check for line clears starting from the bottom and working our way up
-    for (let row = playfield.length - 1; row >= 0;) {
-        if (playfield[row].every(cell => !!cell)) {
+  lineCount = 0; //Counts the number of lines cleared for the current tetronimo
 
-            // drop every row above this one
-            for (let r = row; r >= 0; r--) {
-                for (let c = 0; c < playfield[r].length; c++) {
-                    playfield[r][c] = playfield[r - 1][c];
-                }
-            }
+  // check for line clears starting from the bottom and working our way up
+  for (let row = playfield.length - 1; row >= 0; ) {
+    if (playfield[row].every(cell => !!cell)) {
+
+      // drop every row above this one
+      for (let r = row; r >= 0; r--) {
+        for (let c = 0; c < playfield[r].length; c++) {
+          playfield[r][c] = playfield[r-1][c];
         }
-        else {
-            row--;
-        }
+      }
     }
+    else {
+      row--;
+    }
+  }
 
-    tetromino = getNextTetromino();
+  tetromino = getNextTetromino();
 }
 
 // show the game over screen
@@ -131,12 +135,12 @@ function showGameOver() {
     context.globalAlpha = 0.75;
     context.fillRect(0, canvas.height / 2 - 30, canvas.width, 60);
 
-    context.globalAlpha = 1;
-    context.fillStyle = 'white';
-    context.font = '36px monospace';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+  context.globalAlpha = 1;
+  context.fillStyle = 'white';
+  context.font = '36px monospace';
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
+  context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');
