@@ -1,3 +1,15 @@
+/* 
+ * Tetris
+ * 
+ * Base game created by straker on GitHub
+ *  https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1
+ * 
+ * Implemented by Richard Cashion and Dylan Cowell
+ * 
+ * Fall 2023, ETSU
+ * 
+ */
+
 // https://tetris.fandom.com/wiki/Tetris_Guideline
 
 // get a random integer between the range of [min,max]
