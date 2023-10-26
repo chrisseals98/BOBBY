@@ -1,26 +1,34 @@
-version: '3.4'
+# version: '3.4'
 
-#services:
-#  bucstop:
- #   image: ${DOCKER_REGISTRY-}bucstop
-  #  build:
-   #   context: .
-    #  dockerfile: BucStop/Dockerfile
+# services:
+#   micro:
+#     image: ${DOCKER_REGISTRY-}micro
+#     build:
+#       context: .
+#       dockerfile: Micro/Dockerfile
 
+#   bucstop:
+#     image: ${DOCKER_REGISTRY-}bucstop
+#     build:
+#       context: .
+#       dockerfile: BucStop/Dockerfile
+
+
+      
 services: 
 
-  frontend:
+  bucstop:
     image: bucstop
     build:
       context: .
       dockerfile: BucStop/Dockerfile
     environment: 
-      - backendUrl=http://backend
+      - backendUrl=http://micro
     ports:
       - "5902:80"
     depends_on: 
-      - backend
-  backend:
+      - micro
+  micro:
     image: micro
     build: 
       context: .
