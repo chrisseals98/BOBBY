@@ -1,20 +1,5 @@
 version: '3.4'
 
-# services:
-#   micro:
-#     image: ${DOCKER_REGISTRY-}micro
-#     build:
-#       context: .
-#       dockerfile: Micro/Dockerfile
-
-#   bucstop:
-#     image: ${DOCKER_REGISTRY-}bucstop
-#     build:
-#       context: .
-#       dockerfile: BucStop/Dockerfile
-
-
-      
 services: 
 
   bucstop:
@@ -24,8 +9,15 @@ services:
       dockerfile: BucStop/Dockerfile
     environment: 
       - micro=http://micro
+    #  - ASPNETCORE_ENVIRONMENT=Development
+    #  - ASPNETCORE_URLS=https://+:443;http://+:80
+    #  - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+    #  - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    #volumes:
+    #  - ~/.aspnet/https:/https:ro
     ports:
       - "80:80"
+      - "443:443"
     depends_on: 
       - micro
   micro:

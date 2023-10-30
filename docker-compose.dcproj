@@ -5,13 +5,13 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>fbcc4e02-fd48-4781-aa56-38a14e29e6b9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>micro</DockerServiceName>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceName>bucstop</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
-    </None>
+	  <None Include="docker-compose.override.yml">
+		  <DependentUpon>docker-compose.yml</DependentUpon>
+	  </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>
