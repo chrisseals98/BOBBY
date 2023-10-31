@@ -13,6 +13,10 @@ using System.Net.Http;
 
 
 
+/*
+ * This is the base program which starts the project.
+ */
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -46,6 +50,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+//Handles routing to "separate" game pages by setting the Play page to have subpages depending on ID
 app.MapControllerRoute(
     name: "Games",
     pattern: "Games/{action}/{id?}",
