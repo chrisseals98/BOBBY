@@ -174,18 +174,23 @@ function loop() {
     // reset ball if computer scores
     if ((ball.y > canvas.height) && !resetting) {
         computerScore++;
-        resetting = true;
-        setTimeout(function () {
-            resetGame();
-        }, 1000);
+        if (computerScore !== 7)
+        {
+            resetting = true;
+            setTimeout(function () {
+                resetGame();
+            }, 1000);
+        }
     }
     // reset ball if player scores
     if (ball.y < 0 && !resetting) {
         playerScore++;
-        resetting = true;
-        setTimeout(function () {
-            resetGame();
-        }, 1000);
+        if (playerScore !== 7) {
+            resetting = true;
+            setTimeout(function () {
+                resetGame();
+            }, 1000);
+        }
     }
 
     // Display the scores
