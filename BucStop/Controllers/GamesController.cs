@@ -8,7 +8,6 @@ namespace BucStop.Controllers
     {
         private readonly MicroClient _httpClient;
 
-        private static readonly GameInfo[] gameInfos;
 
         public GamesController(MicroClient games) 
         {
@@ -61,25 +60,32 @@ namespace BucStop.Controllers
             {
                 return NotFound();
             }
-            if(game.Id == 1)
+            if(_games.Length == 0)
+            {
+                return View(game);
+            }
+            if (game.Id == 1)
             {
                 game.Author = _games[0].Author;
                 game.HowTo = _games[0].HowTo;
+                game.Description = _games[0].Description;
             }
             if( game.Id == 2) 
             {
                 game.Author = _games[1].Author;
                 game.HowTo = _games[1].HowTo;
+                game.Description = _games[1].Description;
             }
             if (game.Id == 3)
             {
                 game.Author = _games[2].Author;
                 game.HowTo = _games[2].HowTo;
+                game.Description = _games[2].Description;
             }
 
             return View(game);
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View(games);
         }

@@ -37,7 +37,6 @@ namespace BucStop
             catch (HttpRequestException ex)
             {
                 _logger.LogError(ex.Message);
-                throw;
             }
             return new GameInfo[] { };
 
