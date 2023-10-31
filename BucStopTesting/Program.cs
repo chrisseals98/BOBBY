@@ -33,7 +33,7 @@ namespace BucStopTesting
                 // Test name: Bucstsop test 01
                 // Step # | name | target | value
                 // 1 | open | https://bucstop.mjustis.com/ | 
-                driver.Navigate().GoToUrl("https://bucstop.mjustis.com/");
+                driver.Navigate().GoToUrl("https://bucstop.mjustis.com/"); // Replace URL with LocalHost:PORT - for me it's "https://localhost:7182/"
                 // 2 | setWindowSize | 1552x840 | 
                 driver.Manage().Window.Size = new System.Drawing.Size(1552, 840);
                 // 3 | click | css=img | 
