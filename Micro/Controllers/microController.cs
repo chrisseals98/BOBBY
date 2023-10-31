@@ -14,11 +14,35 @@ namespace Micro
     [Route("[controller]")]
     public class MicroController : ControllerBase
     {
-        private static readonly GameInfo[] TheInfo = new[]
+        private static readonly List<GameInfo> TheInfo = new List<GameInfo>
         {
-            new GameInfo { Title = "Snake", Author = "Kill me ", Description = "Its fucking snake youve played this ", HowTo = "yes"},
-            new GameInfo { Title = "Tetris", Author = "Kill me now",  Description= "Its tetris are you stupid", HowTo = "no"},
-            new GameInfo { Title = "Pong", Author = "seriously kill me", Description = "Comeon it pong", HowTo = "yes"},
+            new GameInfo { 
+                //Id = 1,
+                Title = "Snake",
+                //Content = "~/js/snake.js",
+                Author = "Hillary clinton ",
+                Description = "Look at me im a SNEEEEK",
+                HowTo = "Just snek around",
+                //Thumbnail = "/images/snake.jpg" //640x360 resolution
+            },
+            new GameInfo { 
+                //Id = 2,
+                Title = "Tetris",
+                //Content = "~/js/tetris.js",
+                Author = "Steve from minecraft",
+                Description = "Block Block Block",
+                HowTo = "Put Blocks Down",
+                //Thumbnail = "/images/tetris.jpg"
+            },
+            new GameInfo { 
+                //Id = 3,
+                Title = "Pong",
+                //Content = "~/js/pong.js",
+                Author = "Forest Gump",
+                Description = "Hit the ball",
+                HowTo = "Hit the back back",
+                //Thumbnail = "/images/pong.jpg"
+            },
 
         };
 
