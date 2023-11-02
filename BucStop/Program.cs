@@ -1,3 +1,5 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using BucStop;
 using System;
 using System.Collections.Generic;
