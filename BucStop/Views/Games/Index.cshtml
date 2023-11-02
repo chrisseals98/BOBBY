@@ -1,15 +1,17 @@
 ﻿@model List<BucStop.Models.Game>
-
+<!-- This is the games list page. Each of the games is loaded in from the model using the game's ID value -->
 <h1>List of Games</h1>
 
 <div class="game-list">
     <ul>
+        <!-- Goes through the list of games held in the Game model and lists the pertinent information.-->
         @foreach (var game in Model)
         {
             <div class="game-item">
-                <a href="@Url.Action("Play", "Games", new { id = game.Id })">
+                <!-- Links to the game-->
+                <a href="@Url.Action("Play", "Games", new { id = game.Id })"> 
                     <div class="game-title">@game.Title</div>
-                    <img class="game-thumbnail" src="@game.Thumbnail" alt="@game.Description">
+                    <img class="game-thumbnail" src="@game.Thumbnail">
                 </a>
             </div>
         }

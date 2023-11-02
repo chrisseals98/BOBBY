@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = "Tetris";
 }
-
+<!-- Depricated page. This page was how we loaded in the Tetris game before loading games using the js files -->
 <h2>Tetris</h2>
 <body>
     <style>
@@ -162,6 +162,7 @@ function showGameOver() {
   context.fillStyle = 'white';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
+  context.fillText('GAME OVER! Score: ' + score, canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');

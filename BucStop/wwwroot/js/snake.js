@@ -1,3 +1,14 @@
+/* 
+ * Snake
+ * 
+ * Base game created by straker on GitHub
+ *  https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5
+ * 
+ * Implemented by Kyle Wittman
+ * 
+ * Fall 2023, ETSU
+ * 
+ */
 
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
@@ -7,6 +18,7 @@ var context = canvas.getContext('2d');
 var grid = 16;
 var count = 0;
 
+// Structure for holding data for the snake
 var snake = {
   x: 160,
   y: 160,
@@ -21,6 +33,8 @@ var snake = {
   // length of the snake. grows when eating an apple
   maxCells: 4
 };
+
+// Structure for holding data for the current apple
 var apple = {
   x: 320,
   y: 320
@@ -41,7 +55,7 @@ function loop() {
     return;
   }
 
-  count = 0;
+  count = 0; // Reset the FPS counter
   context.clearRect(0,0,canvas.width,canvas.height);
 
   // move snake by it's velocity
@@ -49,18 +63,18 @@ function loop() {
   snake.y += snake.dy;
 
   // wrap snake position horizontally on edge of screen
-  if (snake.x < 0) {
+  if (snake.x < 0) { // Left side of the screen
     snake.x = canvas.width - grid;
   }
-  else if (snake.x >= canvas.width) {
+  else if (snake.x >= canvas.width) { // Right side of the screen
     snake.x = 0;
   }
 
   // wrap snake position vertically on edge of screen
-  if (snake.y < 0) {
+  if (snake.y < 0) { // Top of the screen
     snake.y = canvas.height - grid;
   }
-  else if (snake.y >= canvas.height) {
+  else if (snake.y >= canvas.height) { // Bottom of the screen
     snake.y = 0;
   }
 

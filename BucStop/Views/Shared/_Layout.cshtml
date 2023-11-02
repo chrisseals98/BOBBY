@@ -1,4 +1,8 @@
 ﻿<!DOCTYPE html>
+
+<!-- This file is the generic layout, used by all pages on the site-->
+<!-- You can think of it as the template for everything else-->
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +21,8 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" >
                 <img src="../../Logo.png" title="BucStop Logo" alt="BucStop"/>
             </a>
-                
+                <!-- This is the navbar code-->
+                <!-- The asp-controller dictates what file in Controllers handles this link-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,14 +51,15 @@
         </main>
     </div>
    
+    <!-- This block handles the footer, which includes the version number for the project. -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - BucStop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - <a href="https://github.com/chrisseals98/BOBBY/releases/tag/v2.0.0">Version: 2.0.0</a>
+            &copy; 2023 - BucStop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - <a href="https://github.com/chrisseals98/BOBBY/releases/tag/v2.0.0" style="color:#C6AA76;">Version: 2.0.0</a>
 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <!-- Adds bootstrap script to the page-->
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
