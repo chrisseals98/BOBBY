@@ -1,17 +1,30 @@
-﻿const canvas = document.getElementById('game');
-const context = canvas.getContext('2d');
-const grid = 15;
-const paddleWidth = grid * 5; // 75
-const maxPaddleX = canvas.width - grid - paddleWidth;
+﻿/* 
+ * Ping-Pong Fever!
+ * 
+ * Base game created by straker on GitHub
+ *  https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5
+ * 
+ * Extended by Chris Seals and Jacob Klucher
+ * 
+ * Fall 2023, ETSU
+ */
 
-var paddleSpeed = 6;
-var ballSpeed = 6;
+const canvas = document.getElementById('game');
+const context = canvas.getContext('2d');
+const grid = 15; // Standard size used by most elements. Also provides offset to prevent elements from going off the left side.
+const paddleWidth = grid * 5; // 75 normally
+const maxPaddleX = canvas.width - grid - paddleWidth; // The furthest that a paddle can move to the right
+
+var paddleSpeed = 6; // Speed that the paddle moves per tick
+var ballSpeed = 6; // Speed that the ball moves per tick
 var playerScore = 0;
 var computerScore = 0;
 var resetting = false;
 
+// Struct which holds the data for the top paddle (the computer)
 const topPaddle = {
     // start in the middle of the game on the top side
+    // X and y position of this object is the top left point
     y: grid * 2,
     x: canvas.width / 2 - paddleWidth / 2,
     height: grid,
@@ -21,8 +34,10 @@ const topPaddle = {
     dy: 0
 };
 
+// Struct which holds data for the bottom paddle (the user)
 const bottomPaddle = {
     // start in the middle of the game on the bottom side
+    // X and y position of this object is the top left point
     y: canvas.height - grid * 3,
     x: canvas.width / 2 - paddleWidth / 2,
     height: grid,
@@ -32,8 +47,10 @@ const bottomPaddle = {
     dy: 0
 };
 
+// Struct which holds the data for the ball
 const ball = {
     // start in the middle of the game
+    // X and y position of the ball is the top left corner
     x: canvas.width / 2 - grid / 2, // Adjust for grid size
     y: canvas.height / 2 - grid / 2, // Adjust for grid size
     width: grid,
@@ -83,6 +100,7 @@ function resetGame() {
     // Reset the ball and paddle positions
     ball.x = canvas.width / 2 - grid / 2; // Adjust for grid size
     ball.y = canvas.height / 2 - grid / 2; // Adjust for grid size
+    // Recenter the two paddles
     topPaddle.x = canvas.width / 2 - paddleWidth / 2;
     bottomPaddle.x = canvas.width / 2 - paddleWidth / 2;
 
@@ -126,6 +144,7 @@ function loop() {
     else if (topPaddle.x > maxPaddleX) {
         topPaddle.x = maxPaddleX;
     }
+
     if (bottomPaddle.x < grid) {
         bottomPaddle.x = grid;
     }
@@ -155,18 +174,23 @@ function loop() {
     // reset ball if computer scores
     if ((ball.y > canvas.height) && !resetting) {
         computerScore++;
-        resetting = true;
-        setTimeout(function () {
-            resetGame();
-        }, 1000);
+        if (computerScore !== 7)
+        {
+            resetting = true;
+            setTimeout(function () {
+                resetGame();
+            }, 1000);
+        }
     }
     // reset ball if player scores
     if (ball.y < 0 && !resetting) {
         playerScore++;
-        resetting = true;
-        setTimeout(function () {
-            resetGame();
-        }, 1000);
+        if (playerScore !== 7) {
+            resetting = true;
+            setTimeout(function () {
+                resetGame();
+            }, 1000);
+        }
     }
 
     // Display the scores
