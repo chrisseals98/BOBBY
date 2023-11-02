@@ -1,4 +1,3 @@
-using System.Web.Mvc;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using BucStop;
