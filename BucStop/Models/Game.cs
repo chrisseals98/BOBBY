@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations;
 
 /*
  * This file contains the Game class, which holds necessary information
@@ -12,6 +14,8 @@ namespace BucStop.Models
     {
         //The ID of the game. Starts at 1.
         public int Id { get; set; }
+
+        public GameInfo[] Info { get; set; }
 
         //The title/name of the game.
         [Required]
@@ -37,5 +41,10 @@ namespace BucStop.Models
         //The link to the image of the thumbnail.
         [Required]
         public string Thumbnail { get; set; }
+
+        /*public async Task OnGet([FromServices] MicroClient microClient)
+        {
+            Info = await microClient.GetGamesAsync  ();
+        } */
     }
 }
