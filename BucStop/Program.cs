@@ -1,15 +1,7 @@
 using BucStop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Net.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using BucStop.Areas.Identity.Data;
 
 
 
@@ -18,6 +10,13 @@ using System.Net.Http;
  */
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("BucStopContextConnection") ?? throw new InvalidOperationException("Connection string 'BucStopContextConnection' not found.");
+
+builder.Services.AddDbContext<BucStopContext>(options =>
+    options.UseSqlite(connectionString));
+
+builder.Services.AddDefaultIdentity<BucStopUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<BucStopContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -32,6 +31,11 @@ builder.Services.AddHttpClient<MicroClient>(client =>
     client.BaseAddress = baseAddress;
 });
 
+builder.Services.AddAuthentication().AddMicrosoftAccount(options =>
+{
+    options.ClientId = configuration["id"];
+    options.ClientSecret = configuration["secret"];
+});
 
 var app = builder.Build();
 
@@ -47,6 +51,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
@@ -59,5 +64,5 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapRazorPages();
 app.Run();
