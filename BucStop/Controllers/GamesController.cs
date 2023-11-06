@@ -1,4 +1,5 @@
 ﻿ using BucStop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 
 namespace BucStop.Controllers
 {
+    [Authorize]
     public class GamesController : Controller
     {
         private readonly MicroClient _httpClient;

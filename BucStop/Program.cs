@@ -32,6 +32,10 @@ builder.Services.AddHttpClient<MicroClient>(client =>
     client.BaseAddress = baseAddress;
 });
 
+builder.Services.AddAuthentication("CustomAuthenticationScheme").AddCookie("CustomAuthenticationScheme", options =>
+{
+    options.LoginPath = "/Account/Login";
+});
 
 var app = builder.Build();
 
@@ -48,6 +52,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 //Handles routing to "separate" game pages by setting the Play page to have subpages depending on ID
