@@ -48,6 +48,10 @@ p {
     color: white;
 }
 
+label {
+    color: white
+}
+
 /* Color and font classes */
 .color-etsu-navy {
     color: #00053E;
