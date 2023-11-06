@@ -20,7 +20,7 @@ namespace BucStop.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string email)
         {
-            if (Regex.IsMatch(email, @".+etsu.edu"))
+            if (Regex.IsMatch(email, @"\b[A-Za-z0-9._%+-]+@etsu\.edu\b"))
             {
                 // If authentication is successful, create a ClaimsPrincipal and sign in the user
                 var claims = new[]
@@ -40,7 +40,7 @@ namespace BucStop.Controllers
             else
             {
                 // Authentication failed, return to the login page with an error message
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Only ETSU students can play, sorry :(");
                 return View();
             }
         }
