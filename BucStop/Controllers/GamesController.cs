@@ -1,7 +1,6 @@
-﻿ using BucStop.Models;
+﻿using BucStop.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 /*
  * This file handles the links to each of the game pages.
