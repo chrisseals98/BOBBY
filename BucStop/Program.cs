@@ -33,8 +33,8 @@ builder.Services.AddHttpClient<MicroClient>(client =>
 
 builder.Services.AddAuthentication().AddMicrosoftAccount(options =>
 {
-    options.ClientId = configuration["id"];
-    options.ClientSecret = configuration["secret"];
+    options.ClientId = configuration["ClientId"];
+    options.ClientSecret = configuration["Secret"];
 });
 
 var app = builder.Build();
