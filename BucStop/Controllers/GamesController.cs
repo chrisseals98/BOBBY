@@ -30,6 +30,7 @@ namespace BucStop.Controllers
                 Title = "Snake", 
                 Content = "~/js/snake.js",
                 Author = null, 
+                DateAdded = null,
                 Description = "Snake Description",
                 HowTo = null,
                 Thumbnail = "/images/snake.jpg" //640x360 resolution
@@ -39,6 +40,7 @@ namespace BucStop.Controllers
                 Title = "Tetris", 
                 Content = "~/js/tetris.js",
                 Author = null,
+                DateAdded = null,
                 Description = "Tetris description.",
                 HowTo = null,
                 Thumbnail = "/images/tetris.jpg"
@@ -48,6 +50,7 @@ namespace BucStop.Controllers
                 Title = "Pong",
                 Content = "~/js/pong.js",
                 Author = null,
+                DateAdded = null,
                 Description = "Pong description.",
                 HowTo = null,
                 Thumbnail = "/images/pong.jpg"
@@ -78,19 +81,22 @@ namespace BucStop.Controllers
             {
                 game.Author = _games[0].Author;
                 game.HowTo = _games[0].HowTo;
-                game.Description = _games[0].Description;
+                game.DateAdded = _games[0].DateAdded
+                game.Description = $"{_games[0].Description} /n {_games[0].DateAdded}";
             }
             if( game.Id == 2) 
             {
                 game.Author = _games[1].Author;
                 game.HowTo = _games[1].HowTo;
-                game.Description = _games[1].Description;
+                game.DateAdded = _games[1].DateAdded
+                game.Description = $"{_games[1].Description} /n {_games[1].DateAdded}";
             }
             if (game.Id == 3)
             {
                 game.Author = _games[2].Author;
                 game.HowTo = _games[2].HowTo;
-                game.Description = _games[2].Description;
+                game.DateAdded = _games[2].DateAdded
+                game.Description = $"{_games[2].Description} /n {_games[2].DateAdded}";
             }
 
             return View(game);

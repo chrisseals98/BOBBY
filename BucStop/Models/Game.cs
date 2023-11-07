@@ -29,6 +29,9 @@ namespace BucStop.Models
         //The author(s) of the game.
         [Required]
         public string Author { get; set; }
+        //Shows the Date the game was added
+        [Required]
+        public string DateAdded { get; set; }
 
         //The description of the game.
         [Required]
