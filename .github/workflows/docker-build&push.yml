@@ -33,12 +33,10 @@ jobs:
       #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
 
       - name: ssh
-        uses: nekiro/ssh-job@main
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
-          command: |
-            mkdir test
+          port: ${{ secrets.PORT }}
+          script: whoami
