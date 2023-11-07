@@ -81,21 +81,21 @@ namespace BucStop.Controllers
             {
                 game.Author = _games[0].Author;
                 game.HowTo = _games[0].HowTo;
-                game.DateAdded = _games[0].DateAdded
+                game.DateAdded = _games[0].DateAdded;
                 game.Description = $"{_games[0].Description} /n {_games[0].DateAdded}";
             }
             if( game.Id == 2) 
             {
                 game.Author = _games[1].Author;
                 game.HowTo = _games[1].HowTo;
-                game.DateAdded = _games[1].DateAdded
+                game.DateAdded = _games[1].DateAdded;
                 game.Description = $"{_games[1].Description} /n {_games[1].DateAdded}";
             }
             if (game.Id == 3)
             {
                 game.Author = _games[2].Author;
                 game.HowTo = _games[2].HowTo;
-                game.DateAdded = _games[2].DateAdded
+                game.DateAdded = _games[2].DateAdded;
                 game.Description = $"{_games[2].Description} /n {_games[2].DateAdded}";
             }
 
