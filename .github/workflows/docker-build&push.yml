@@ -39,6 +39,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          pass: ${{ secrets.SSH_PASS }}
+          password: ${{ secrets.SSH_PASS }}
           command: |
             mkdir test
