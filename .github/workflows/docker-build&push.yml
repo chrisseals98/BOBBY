@@ -33,10 +33,11 @@ jobs:
       #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
 
       - name: ssh
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@latest
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
-          port: ${{ secrets.PORT }}
-          script: mkdir test
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            mkdir test
