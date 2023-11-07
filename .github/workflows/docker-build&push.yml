@@ -3,36 +3,40 @@ name: Build and Push Docker Image
 on:
   push:
     branches: ["ssh-pipeline"]
-    
+  pull_request:
+    branches: ["main"]
+    types:
+      - closed
 jobs:
-
-  docker:
-    runs-on: ubuntu-latest
-
-    steps:
-    -
-      name: Checkout
-      uses: actions/checkout@v4
-    #-
-      #name: Login to Docker Hub
-      #uses: docker/login-action@v3
-      #with:
-      #  username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #  password: ${{ secrets.DOCKERHUB_TOKEN }}
-    #-
-    #  name: Build and push
-    #  uses: docker/build-push-action@v5
-    #  with:
-    #    context: .
-    #    file: ./BucStop/Dockerfile
-     #   push: true
-     #   tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
-    - 
-        id: ssh
-        uses: invi5H/ssh-action@v1
-        with:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_KEY: ${{ secrets.SSH_PASS }}
-    - run: ssh ${{ steps.ssh.outputs.SERVER }} pwd
+    if_merged:
+      if: github.event.pull_request.merged == true
+      
+      runs-on: ubuntu-latest
+    
+      steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      #-
+        #name: Login to Docker Hub
+        #uses: docker/login-action@v3
+        #with:
+        #  username: ${{ secrets.DOCKERHUB_USERNAME }}
+        #  password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #-
+      #  name: Build and push
+      #  uses: docker/build-push-action@v5
+      #  with:
+      #    context: .
+      #    file: ./BucStop/Dockerfile
+       #   push: true
+       #   tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
+      - 
+          id: ssh
+          uses: invi5H/ssh-action@v1
+          with:
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            SSH_PORT: ${{ secrets.SSH_PORT }}
+            SSH_USER: ${{ secrets.SSH_USER }}
+            SSH_KEY: ${{ secrets.SSH_KEY }}
+      - run: ssh ${{ steps.ssh.outputs.SERVER }} mkdir test
