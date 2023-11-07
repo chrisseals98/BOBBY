@@ -44,7 +44,7 @@ a {
     color: #C6AA76; /* Old Gold */
 }
 
-p {
+p, ul , li {
     color: white;
 }
 
