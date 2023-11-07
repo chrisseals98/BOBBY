@@ -40,5 +40,4 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           pass: ${{ secrets.SSH_PASS }}
-
-      - run: ssh ${{ steps.ssh.outputs.SERVER }} mkdir test
+          first_ssh: mkdir test
