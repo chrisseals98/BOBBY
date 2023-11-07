@@ -39,4 +39,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          script: mkdir test
