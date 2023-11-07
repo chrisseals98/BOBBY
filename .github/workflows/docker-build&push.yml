@@ -33,11 +33,12 @@ jobs:
       #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
 
       - name: ssh
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        uses: nekiro/ssh-job@main
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           pass: ${{ secrets.SSH_PASS }}
-          first_ssh: mkdir test
+          command: |
+            mkdir test
