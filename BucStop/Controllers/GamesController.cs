@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace BucStop.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class GamesController : Controller
     {
         private readonly MicroClient _httpClient;
@@ -62,6 +62,7 @@ namespace BucStop.Controllers
         };
 
         //Takes the user to the index page, passing the games list as an argument
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
             return View(games);
@@ -77,7 +78,16 @@ namespace BucStop.Controllers
             {
                 return NotFound();
             }
-            if(_games.Length == 0)
+
+            // Increment the play count for the game with the specified ID
+            _playCountManager.IncrementPlayCount(id);
+
+            int playCount = _playCountManager.GetPlayCount(id);
+
+            // Update the game's play count
+            game.PlayCount = playCount;
+
+            if (_games.Length == 0)
             {
                 return View(game);
             }
