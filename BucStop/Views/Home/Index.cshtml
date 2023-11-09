@@ -37,3 +37,21 @@
         <span class="carousel-control-next-icon"></span>
     </button>
 </div>
+
+<div class="row gy-4" style="margin-left: 20px; margin-right: 20px;">
+    <!-- Goes through the list of games held in the Game model and lists the pertinent information.-->
+    @foreach (var game in Model)
+    {
+        <div class="col-sm-3 d-flex">
+            <div class="card">
+                <a href="@Url.Action("Play", "Games", new { id = game.Id })" style="text-decoration: none;">
+                    <img src="@game.Thumbnail" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">@game.Title</h5>
+                        <p class="card-text"><small class="text-muted">Placeholder Desc</small></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
