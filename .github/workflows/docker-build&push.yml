@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Deploy Pipeline
 
 on:
   push:
@@ -9,30 +9,28 @@ on:
       - closed
 
 jobs:
-  # if_merged:
-  #   if: github.event.pull_request.merged == true
-  build:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # - name: Build and push
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     context: .
-      #     file: ./BucStop/Dockerfile
-      #     push: true
-      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
-
-      - name: ssh
+  
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./BucStop/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bucstop:latest
+          
+      - name: Run Deploy script on the server
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -40,4 +38,5 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            mkdir test
+            cd scripts
+            ./redeployBucstop.sh
