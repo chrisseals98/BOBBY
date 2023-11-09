@@ -12,6 +12,9 @@
                 <a href="@Url.Action("Play", "Games", new { id = game.Id })"> 
                     <div class="game-title">@game.Title</div>
                     <img class="game-thumbnail" src="@game.Thumbnail">
+                    <p>Play Count: @game.PlayCount</p>
+                    <!-- Other game details -->
+
                 </a>
             </div>
         }
