@@ -1,8 +1,6 @@
 name: Deploy Pipeline
 
 on:
-  push:
-    branches: ["ssh-pipeline"]
   pull_request:
     branches: ["main"]
     types:
@@ -10,7 +8,7 @@ on:
 
 jobs:
   if_merged:
-    if: true #github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
