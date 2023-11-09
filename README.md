@@ -31,6 +31,8 @@ BucStop folder.
 		* Home
 			* This folder contains the main pages used by the site, 				
 				such as the home page, admin page, and privacy page.
+		* Account
+  			* This folder contains the login page to authenticate ETSU users.
 		* Shared 
 			* This contains other important pages and/or resources 
 				that aren't in the other two folders, including the
