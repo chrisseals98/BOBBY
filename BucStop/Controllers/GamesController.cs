@@ -1,6 +1,8 @@
 ﻿using BucStop.Models;
+using BucStop.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 
 /*
  * This file handles the links to each of the game pages.
@@ -12,19 +14,20 @@ namespace BucStop.Controllers
     public class GamesController : Controller
     {
         private readonly MicroClient _httpClient;
+        private readonly PlayCountManager _playCountManager;
 
 
-        public GamesController(MicroClient games) 
+        public GamesController(MicroClient games, IWebHostEnvironment webHostEnvironment)
         {
-            _httpClient = games; 
+            _httpClient = games;
 
+            // Initialize the PlayCountManager with the web root path and the JSON file name
+            _playCountManager = new PlayCountManager(webHostEnvironment);
         }
 
         //Creating the games objects to display on Play and Index
         private static List<Game> games = new List<Game>
         {
-
-
             //Game data
             new Game { 
                 Id = 1, 
