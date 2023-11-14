@@ -8,7 +8,7 @@ namespace BucStop.Controllers
 {
     public class AccountController : Controller
     {
-        public string email {  get; set; } = string.Empty;
+        public string email { get; set; } = string.Empty;
 
         [AllowAnonymous]
         public IActionResult Login()
