@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace BucStop.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class GamesController : Controller
     {
         private readonly MicroClient _httpClient;
