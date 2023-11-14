@@ -21,18 +21,25 @@
     </div>
 
     <!-- Top 3 Games -->
+    <h1>top games</h1>
     <!-- Game 1 -->
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src=@gamesList[0].Thumbnail alt="Game 1" class="d-block" style="width:100%">
+            <a href="@Url.Action("Play", "Games", new { id = @gamesList[0].Id })" style="text-decoration: none;">
+                <img src=@gamesList[0].Thumbnail alt="Game 1" class="d-block" style="width:100%; height:100px;">
+            </a>
         </div>
     <!-- Game 2 -->
         <div class="carousel-item">
-            <img src=@gamesList[1].Thumbnail alt="Game 2" class="d-block" style="width:100%">
+            <a href="@Url.Action("Play", "Games", new { id = @gamesList[0].Id })" style="text-decoration: none;">
+                <img src=@gamesList[1].Thumbnail alt="Game 2" class="d-block" style="width:100%; height:100px;">
+            </a>
         </div>
     <!-- Game 3 -->
         <div class="carousel-item">
-            <img src=@gamesList[2].Thumbnail alt="Game 3" class="d-block" style="width:100%">
+            <a href="@Url.Action("Play", "Games", new { id = @gamesList[0].Id })" style="text-decoration: none;">
+            <img src=@gamesList[2].Thumbnail alt="Game 3" class="d-block" style="width:100%; height:100px;">
+            </a>
         </div>
     </div>
 
