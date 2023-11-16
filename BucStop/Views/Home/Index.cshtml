@@ -3,8 +3,16 @@
 }
 
 <!-- Unused file for games list.-->
+@{
+    List<Game> gamesList = new List<Game>();
+    foreach (var game in Model)
+    {
+        gamesList.Add(game);
+        //gamesList.Sort(gamesList.playcount);
 
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
+    }
+}
+<div id="demo" class="carousel slide" data-bs-ride="carousel" style="margin-left: 100px; margin-right: 100px;">
 
     <!-- Indicators/dots -->
     <div class="carousel-indicators">
@@ -14,18 +22,25 @@
     </div>
 
     <!-- Top 3 Games -->
+    <h1>top games</h1>
     <!-- Game 1 -->
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="" alt="Game 1" class="d-block" style="width:100%">
+            <a href="@Url.Action("Play", "Games", new { id = @gamesList[0].Id })" style="text-decoration: none;">
+                <img src=@gamesList[0].Thumbnail alt="Game 1" class="d-block" style="width:100%; height:500%;">
+            </a>
         </div>
     <!-- Game 2 -->
         <div class="carousel-item">
-            <img src="" alt="Game 2" class="d-block" style="width:100%">
+            <a href="@Url.Action("Play", "Games", new { id = @gamesList[1].Id })" style="text-decoration: none;">
+                <img src=@gamesList[1].Thumbnail alt="Game 2" class="d-block" style="width:100%; height:500%;">
+            </a>
         </div>
     <!-- Game 3 -->
         <div class="carousel-item">
-            <img src="" alt="Game 3" class="d-block" style="width:100%">
+            <a href="@Url.Action("Play", "Games", new { id = @gamesList[2].Id })" style="text-decoration: none;">
+            <img src=@gamesList[2].Thumbnail alt="Game 3" class="d-block" style="width:100%; height:500%;">
+            </a>
         </div>
     </div>
 
@@ -37,3 +52,5 @@
         <span class="carousel-control-next-icon"></span>
     </button>
 </div>
+
+
