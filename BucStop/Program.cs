@@ -1,17 +1,4 @@
 using BucStop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Net.Http;
-
-
 
 /*
  * This is the base program which starts the project.
@@ -32,6 +19,10 @@ builder.Services.AddHttpClient<MicroClient>(client =>
     client.BaseAddress = baseAddress;
 });
 
+builder.Services.AddAuthentication("CustomAuthenticationScheme").AddCookie("CustomAuthenticationScheme", options =>
+{
+    options.LoginPath = "/Account/Login";
+});
 
 var app = builder.Build();
 
@@ -48,6 +39,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 //Handles routing to "separate" game pages by setting the Play page to have subpages depending on ID

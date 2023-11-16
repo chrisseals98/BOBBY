@@ -21,7 +21,7 @@ namespace BucStop.Controllers
         //Sends the user to the deprecated Index page.
         public IActionResult Index()
         {
-            return View();
+            return View(games);
         }
 
         //Takes the user to the admin page.
@@ -29,9 +29,15 @@ namespace BucStop.Controllers
         {
             return View();
         }
-        
+
         //Takes the user to the privacy policy page.
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        //Takes the user to the game criteria page.
+        public IActionResult GameCriteria()
         {
             return View();
         }
@@ -42,5 +48,42 @@ namespace BucStop.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        //Creating the games objects to display on Play and Index
+        private static List<Game> games = new List<Game>
+        {
+
+
+            //Game data
+            new Game {
+                Id = 1,
+                Title = "Snake",
+                Content = "~/js/snake.js",
+                Author = null,
+                Description = "Snake Description",
+                HowTo = null,
+                Thumbnail = "/images/snake.jpg" //640x360 resolution
+            },
+            new Game {
+                Id = 2,
+                Title = "Tetris",
+                Content = "~/js/tetris.js",
+                Author = null,
+                Description = "Tetris description.",
+                HowTo = null,
+                Thumbnail = "/images/tetris.jpg"
+            },
+            new Game {
+                Id = 3,
+                Title = "Pong",
+                Content = "~/js/pong.js",
+                Author = null,
+                Description = "Pong description.",
+                HowTo = null,
+                Thumbnail = "/images/pong.jpg"
+            },
+        };
+
     }
 }

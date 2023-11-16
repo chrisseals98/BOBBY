@@ -44,8 +44,12 @@ a {
     color: #C6AA76; /* Old Gold */
 }
 
-p {
+p, ul , li {
     color: white;
+}
+
+label {
+    color: white
 }
 
 /* Color and font classes */
