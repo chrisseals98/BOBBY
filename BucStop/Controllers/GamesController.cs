@@ -15,67 +15,33 @@ namespace BucStop.Controllers
     {
         private readonly MicroClient _httpClient;
         private readonly PlayCountManager _playCountManager;
+        private readonly GameService _gameService;
 
-        //Creating the games objects to display on Play and Index
-        private static List<Game> gamesList = new List<Game>
-        {
-            //Game data
-            new Game {
-                Id = 1,
-                Title = "Snake",
-                Content = "~/js/snake.js",
-                Author = null,
-                DateAdded = null,
-                Description = "Snake Description",
-                HowTo = null,
-                Thumbnail = "/images/snake.jpg", //640x360 resolution
-                PlayCount = 0
-            },
-            new Game {
-                Id = 2,
-                Title = "Tetris",
-                Content = "~/js/tetris.js",
-                Author = null,
-                DateAdded = null,
-                Description = "Tetris description.",
-                HowTo = null,
-                Thumbnail = "/images/tetris.jpg",
-                PlayCount = 0
-            },
-            new Game {
-                Id = 3,
-                Title = "Pong",
-                Content = "~/js/pong.js",
-                Author = null,
-                DateAdded = null,
-                Description = "Pong description.",
-                HowTo = null,
-                Thumbnail = "/images/pong.jpg",
-                PlayCount = 0
-            },
-        };
-
-        public GamesController(MicroClient games, IWebHostEnvironment webHostEnvironment)
+        public GamesController(MicroClient games, IWebHostEnvironment webHostEnvironment, GameService gameService)
         {
             _httpClient = games;
+            _gameService = gameService;
 
             // Initialize the PlayCountManager with the web root path and the JSON file name
-            _playCountManager = new PlayCountManager(gamesList, webHostEnvironment);
+            _playCountManager = new PlayCountManager(_gameService.GetGames() ?? new List<Game>(), webHostEnvironment);
+
+            
         }
 
         //Takes the user to the index page, passing the games list as an argument
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
-            return View(gamesList);
+            return View(_gameService.GetGames());
         }
 
         //Takes the user to the Play page, passing the game object the user wants to play
         public async Task<IActionResult> Play(int id)
         {
-            GameInfo[] _games = await _httpClient.GetGamesAsync();
+            GameInfo[] _gamesInfo = await _httpClient.GetGamesAsync();
+            List<Game> games = _gameService.GetGames() ?? new List<Game>();
 
-            Game game = gamesList.FirstOrDefault(x => x.Id == id);
+            Game game = games.FirstOrDefault(x => x.Id == id);
             if (game == null)
             {
                 return NotFound();
