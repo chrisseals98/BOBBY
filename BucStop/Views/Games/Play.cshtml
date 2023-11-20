@@ -27,11 +27,15 @@
                         {
                             <canvas width="400" height="400" id="game"></canvas>
                         }
-                        @if (Model.Title == "Tetris")
+                        else if (Model.Title == "Tetris")
                         {
                             <canvas width="320" height="640" id="game" style="border: 1px solid #000000; background-color: gray"></canvas>
                         }
-                        @if (Model.Title == "Pong")
+                        else if (Model.Title == "Pong")
+                        {
+                            <canvas width="400" height="500" id="game" style="border: 1px solid #000000; background-color: gray"></canvas>
+                        }
+                        else
                         {
                             <canvas width="400" height="500" id="game" style="border: 1px solid #000000; background-color: gray"></canvas>
                         }
