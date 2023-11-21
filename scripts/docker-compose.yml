@@ -4,12 +4,12 @@ services:
     image: $(DOCKER-REPO-PATH)/bucstop
     environment:
       - micro=http://micro
-      - ASPNETCORE_URLS=https://+;http://+;
-      - ASPNETCORE_HTTPS_PORT=443
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=$(CERT-PASS)
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/cert.pfx
-    volumes:
-      - /home/ubuntu:/https/
+      #- ASPNETCORE_URLS=https://+;http://+;
+      #- ASPNETCORE_HTTPS_PORT=443
+      #- ASPNETCORE_Kestrel__Certificates__Default__Password=$(CERT-PASS)
+      #- ASPNETCORE_Kestrel__Certificates__Default__Path=/https/cert.pfx
+    #volumes:
+    #  - /home/ubuntu:/https/
     ports:
       - "80:80"
       - "443:443"
