@@ -11,6 +11,7 @@
 This project is a game website made by and for ETSU students. It
 is a place to put games created by ETSU students. 
 
+
 ### Project Structure: 
 To understand the project structure, familiarize yourself with the
 MVC (Model View Controller) structure. When clicking on a game, 
@@ -38,3 +39,5 @@ BucStop folder.
 	* wwwroot
 		* This folder contains the resources used by the project, 
 			including images, the javascript games, the icons, etc.
+
+This project communicates with a microservice with HTTP calls for the game information, the repository is hosted at [Micro Service](https://github.com/chrisseals98/GameInfoMicroService).
