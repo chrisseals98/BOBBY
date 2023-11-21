@@ -17,5 +17,5 @@ services:
       - micro
     restart: unless-stopped
   micro:
-    image: $(DOCKER-REPO-PATH)/micro
+    image: $(DOCKER-REPO-PATH)/gamemicro
     restart: unless-stopped
