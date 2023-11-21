@@ -11,6 +11,9 @@
 This project is a game website made by and for ETSU students. It
 is a place to put games created by ETSU students. 
 
+### Backlog Information:
+https://docs.google.com/document/d/1qtNMQAEP9aWnK6pfo39iGT0Dhm9uwL6oDHdy6B-Vy-4/edit#heading=h.mgz5ua27kudv
+
 ### Project Structure: 
 To understand the project structure, familiarize yourself with the
 MVC (Model View Controller) structure. When clicking on a game, 
