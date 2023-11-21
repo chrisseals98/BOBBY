@@ -15,6 +15,9 @@ This project also communicates to a microservice with HTTP calls for the game in
 ### Backlog Information:
 [Backlog](https://docs.google.com/document/d/1qtNMQAEP9aWnK6pfo39iGT0Dhm9uwL6oDHdy6B-Vy-4/edit#heading=h.mgz5ua27kudv)
 
+### Minimum Viable Product(MVP):
+[MVP Doc link](https://docs.google.com/document/d/1Dqdo4Uw-TbotZB-qz9TD10u000-2M7HP1iOVBlIGznc/edit)
+
 ### Project Structure: 
 To understand the project structure, familiarize yourself with the
 MVC (Model View Controller) structure. When clicking on a game, 
