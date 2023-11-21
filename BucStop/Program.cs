@@ -24,6 +24,8 @@ builder.Services.AddAuthentication("CustomAuthenticationScheme").AddCookie("Cust
     options.LoginPath = "/Account/Login";
 });
 
+builder.Services.AddSingleton<GameService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

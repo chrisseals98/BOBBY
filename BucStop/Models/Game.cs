@@ -29,6 +29,9 @@ namespace BucStop.Models
         //The author(s) of the game.
         [Required]
         public string Author { get; set; }
+        //Shows the Date the game was added
+        [Required]
+        public string DateAdded { get; set; }
 
         //The description of the game.
         [Required]
@@ -41,6 +44,8 @@ namespace BucStop.Models
         //The link to the image of the thumbnail.
         [Required]
         public string Thumbnail { get; set; }
+
+        public int PlayCount { get; set; }
 
         /*public async Task OnGet([FromServices] MicroClient microClient)
         {

@@ -12,16 +12,18 @@ namespace BucStop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly GameService _gameService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, GameService games)
         {
             _logger = logger;
+            _gameService = games;
         }
 
         //Sends the user to the deprecated Index page.
         public IActionResult Index()
         {
-            return View();
+            return View(_gameService.GetGames());
         }
 
         //Takes the user to the admin page.
@@ -29,7 +31,7 @@ namespace BucStop.Controllers
         {
             return View();
         }
-        
+
         //Takes the user to the privacy policy page.
         public IActionResult Privacy()
         {
