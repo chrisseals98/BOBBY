@@ -9,7 +9,14 @@
 
 ### Overview:
 This project is a game website made by and for ETSU students. It
-is a place to put games created by ETSU students. 
+is a place to put games created by ETSU students.
+This project also communicates to a microservice with HTTP calls for the game information, the repository is hosted at [Micro Service](https://github.com/chrisseals98/GameInfoMicroService). It is deployed with the microservice using docker compose, see the scripts folder for the docker-compose.yml file.
+
+### Backlog Information:
+[Backlog](https://docs.google.com/document/d/1qtNMQAEP9aWnK6pfo39iGT0Dhm9uwL6oDHdy6B-Vy-4/edit#heading=h.mgz5ua27kudv)
+
+### Minimum Viable Product(MVP):
+[MVP Doc link](https://docs.google.com/document/d/1Dqdo4Uw-TbotZB-qz9TD10u000-2M7HP1iOVBlIGznc/edit)
 
 ### Project Structure: 
 To understand the project structure, familiarize yourself with the
@@ -38,3 +45,9 @@ BucStop folder.
 	* wwwroot
 		* This folder contains the resources used by the project, 
 			including images, the javascript games, the icons, etc.
+
+
+### Help
+For more documentation on how to run locally and how to set up deployments, see the google docs below:
+* [Running Locally](https://docs.google.com/document/d/1gfUpjZNfqWyv1ohUW1IaS8fOhXp0hOx6tFQVXBADa8Q/edit?usp=sharing)
+* [How to Deploy](https://docs.google.com/document/d/1i0edcmvZm_j0zQLYiigNliW39FJuJbmhkxOCCb2NbVs/edit?usp=sharing)
